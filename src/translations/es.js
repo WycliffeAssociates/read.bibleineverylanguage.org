@@ -51,6 +51,7 @@ const language = {
 		"{{ bookname }} ha sido retirado con éxito de la disponibilidad offline.",
 	spanish: "Español",
 	support: "Apoyo",
+	"contact-us": "Apoyo",
 	thisLanguage: "Español",
 	tools: "Herramientas",
 	software: "Herramientas",

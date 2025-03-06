@@ -124,19 +124,20 @@ export function DownloadSection(props: IDownloadSection) {
 							<RadioGroup.Item
 								value={choice}
 								data-title="radio"
-								class={
-									"flex-grow cursor-pointer "
-								}
+								class={"flex-grow cursor-pointer "}
 							>
 								<RadioGroup.ItemInput data-title="radio__input" class="" />
-								<RadioGroup.ItemControl data-title="radio__control" class="py-2 text-center hover:border-accent hover:bg-gray-100 focus:outline-2 focus:outline-accent data-[checked]:bg-accent/10 data-[checked]:text-accent/90 h-full">
+								<RadioGroup.ItemControl
+									data-title="radio__control"
+									class="py-2 text-center hover:border-accent hover:bg-gray-100 focus:outline-2 focus:outline-accent data-[checked]:bg-accent/10 data-[checked]:text-accent/90 h-full"
+								>
 									<RadioGroup.ItemIndicator
 										data-title="radio__indicator"
 										class=""
 									/>
-								<RadioGroup.ItemLabel data-title="radio__label" class="">
-									{choice}
-								</RadioGroup.ItemLabel>
+									<RadioGroup.ItemLabel data-title="radio__label" class="">
+										{choice}
+									</RadioGroup.ItemLabel>
 								</RadioGroup.ItemControl>
 							</RadioGroup.Item>
 						)}

@@ -49,10 +49,7 @@ export default function Settings(props: settingsProps) {
 	};
 
 	return (
-		<Dialog
-			open={props.settingsAreOpen()}
-			onOpenChange={props.setSettingsOpen}
-		>
+		<Dialog open={props.settingsAreOpen()} onOpenChange={props.setSettingsOpen}>
 			<Dialog.Portal mount={getPortalSpot()}>
 				<Dialog.Overlay
 					data-title="dialog__overlay"

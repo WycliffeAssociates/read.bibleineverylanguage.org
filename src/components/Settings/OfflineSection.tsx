@@ -339,8 +339,9 @@ async function saveSingleBookToSwCache({
 			bib[correspondingBook] = data;
 			indexToPostWith = originalRepoIndex;
 		} else {
-
-			const indexClone = JSON.parse(JSON.stringify(repoIndex)) as typeof repoIndex;
+			const indexClone = JSON.parse(
+				JSON.stringify(repoIndex),
+			) as typeof repoIndex;
 			const bib = indexClone.bible;
 			if (!bib) return;
 			const correspondingBook = bib?.findIndex(
@@ -541,8 +542,10 @@ async function saveEntireResourceOffline({
 		// response is same shape as working memory, so add to working memory and eliminate need for any other api calls
 		mutateStoreText("text", downloadIndex.content);
 
-		//  clone the current index bc it has some metadata on it, and we are ultimately going to save a complete version of it once merging in the download index.. Not using structured clone cause its a proxy obj from solid. 
-		const indexClone = JSON.parse(JSON.stringify(repoIndex)) as typeof repoIndex;
+		//  clone the current index bc it has some metadata on it, and we are ultimately going to save a complete version of it once merging in the download index.. Not using structured clone cause its a proxy obj from solid.
+		const indexClone = JSON.parse(
+			JSON.stringify(repoIndex),
+		) as typeof repoIndex;
 		indexClone.bible = downloadIndex.content;
 		const ssrPostPayload = JSON.stringify(indexClone);
 

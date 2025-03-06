@@ -51,6 +51,7 @@ const language = {
 		"{{ bookname }} has been successfully removed from offline availability.",
 	spanish: "Spanish",
 	support: "Support",
+	"contact-us": "Support",
 	thisLanguage: "English",
 	tools: "tools",
 	"church-owned-bible-translation": "Church-Owned Bible Translation",
