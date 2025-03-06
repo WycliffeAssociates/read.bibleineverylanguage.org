@@ -1,24 +1,24 @@
 ---
 export interface Props {
-  title: string;
-  use100vh?: boolean;
-  textDir: string;
-  repoUrl: string;
-  customFont?: string | null;
-  customFontFamily?: string | null;
+	title: string;
+	use100vh?: boolean;
+	textDir: string;
+	repoUrl: string;
+	customFont?: string | null;
+	customFontFamily?: string | null;
 }
 // imports
-import {pwaInfo} from "virtual:pwa-info";
+import { pwaInfo } from "virtual:pwa-info";
 import "../styles/global.css";
 import Nav from "@components/global/Nav/Nav.astro";
-import {getPreferredLangFromHeader} from "@lib/utils";
+import { getPreferredLangFromHeader } from "@lib/utils";
 
 // data
-const {title, use100vh, textDir, repoUrl, customFont, customFontFamily} =
-  Astro.props;
+const { title, use100vh, textDir, repoUrl, customFont, customFontFamily } =
+	Astro.props;
 
 const preferredLocale = getPreferredLangFromHeader(Astro.request);
-let initialDictModule = await import(`../translations/${preferredLocale}.js`);
+const initialDictModule = await import(`../translations/${preferredLocale}.js`);
 const initialDict = initialDictModule.default;
 ---
 

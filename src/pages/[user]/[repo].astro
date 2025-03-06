@@ -1,38 +1,38 @@
 ---
+import { ReaderWrapper } from "@components/ReaderWrapper/ReaderWrapper";
+import { TranslationManual } from "@components/TranslationManual/TranslationManual";
+import { TranslationWords } from "@components/TranslationWords/Tw";
+import { CommonWrapper } from "@components/global/CommonWrapper";
 import Layout from "@layouts/Layout.astro";
-import {CommonWrapper} from "@components/global/CommonWrapper";
-import {ReaderWrapper} from "@components/ReaderWrapper/ReaderWrapper";
-import {TranslationWords} from "@components/TranslationWords/Tw";
-import {TranslationManual} from "@components/TranslationManual/TranslationManual";
 import {
-  getChapterHtml,
-  getTwSchemaHtml,
-  getRepoIndex,
-  getTmSchemaHtml,
-  checkForOrDownloadWholeRepo
+	checkForOrDownloadWholeRepo,
+	getChapterHtml,
+	getRepoIndex,
+	getTmSchemaHtml,
+	getTwSchemaHtml,
 } from "@lib/api";
+import { setOriginUrl } from "@lib/routes";
 import {
-  getBookAndChapterFromUrl,
-  getTwQueryParamOrDefault,
-  getPreferredLangFromHeader,
-  seedAndMutateInitialDataRepoIndex,
-  getTmQueryParamOrDefault
+	getBookAndChapterFromUrl,
+	getPreferredLangFromHeader,
+	getTmQueryParamOrDefault,
+	getTwQueryParamOrDefault,
+	seedAndMutateInitialDataRepoIndex,
 } from "@lib/utils";
-import {setOriginUrl} from "@lib/routes";
 import type {
-  tmProps,
-  twProps,
-  bibleSchemaProps,
-  repoIndexObj
+	bibleSchemaProps,
+	repoIndexObj,
+	tmProps,
+	twProps,
 } from "@src/customTypes/types";
-import {gunzipSync, strFromU8} from "fflate";
+import { gunzipSync, strFromU8 } from "fflate";
 
 setOriginUrl(Astro.url.origin);
-let {repo, user} = Astro.params;
-const res404 = () => new Response(null, {status: 404});
+let { repo, user } = Astro.params;
+const res404 = () => new Response(null, { status: 404 });
 // url routes validation check
 if (!repo || !user) {
-  return res404();
+	return res404();
 }
 
 repo = String(repo);
@@ -43,141 +43,141 @@ let hasDownloadIndex = false;
 let wasPostRequest = false;
 // POST REQUESTS COME FROM SETTINGS ACTION WHEN SAVING ENTIRE BOOK OFFLINE..POST BODY IS AN ALREADY DOWNLOADED INDEX AND CONTENT FOR THIS RESOURCE.
 if (Astro.request.method === "POST") {
-  try {
-    const body = Astro.request.body;
-    if (!body) return;
+	try {
+		const body = Astro.request.body;
+		if (!body) return;
 
-    const arrBuff = await Astro.request.arrayBuffer();
-    const u8Array = new Uint8Array(arrBuff);
-    const decodedU8 = gunzipSync(u8Array);
-    const decodedRepoIndex = JSON.parse(strFromU8(decodedU8)) as repoIndexObj;
-    if (!decodedRepoIndex) return;
-    repoIndex = decodedRepoIndex;
-    wasPostRequest = true;
-    hasDownloadIndex = true;
-  } catch (error) {
-    console.error(error);
-    return new Response(null, {
-      status: 500
-    });
-  }
+		const arrBuff = await Astro.request.arrayBuffer();
+		const u8Array = new Uint8Array(arrBuff);
+		const decodedU8 = gunzipSync(u8Array);
+		const decodedRepoIndex = JSON.parse(strFromU8(decodedU8)) as repoIndexObj;
+		if (!decodedRepoIndex) return;
+		repoIndex = decodedRepoIndex;
+		wasPostRequest = true;
+		hasDownloadIndex = true;
+	} catch (error) {
+		console.error(error);
+		return new Response(null, {
+			status: 500,
+		});
+	}
 }
 
 // NORMAL GET SCENARIO
 if (!repoIndex) {
-  repoIndex = await getRepoIndex({user, repo});
-  hasDownloadIndex = !!(await checkForOrDownloadWholeRepo({
-    user,
-    repo,
-    method: "HEAD"
-  }));
+	repoIndex = await getRepoIndex({ user, repo });
+	hasDownloadIndex = !!(await checkForOrDownloadWholeRepo({
+		user,
+		repo,
+		method: "HEAD",
+	}));
 }
 
 if (!repoIndex) return res404();
 
 const isBibleSchema = ["bible", "tn", "tq", "commentary"].includes(
-  repoIndex.resourceType
+	repoIndex.resourceType,
 );
 const isTw = repoIndex.resourceType === "tw";
 
 // grab query params (if present) for initial HTML
-let repoProps: tmProps | twProps | bibleSchemaProps = {
-  repoIndex: repoIndex,
-  templateType: isBibleSchema ? "BIBLE" : isTw ? "TW" : "TM"
+const repoProps: tmProps | twProps | bibleSchemaProps = {
+	repoIndex: repoIndex,
+	templateType: isBibleSchema ? "BIBLE" : isTw ? "TW" : "TM",
 } as tmProps | twProps | bibleSchemaProps;
 
 if (repoProps.templateType === "TW") {
-  // initial NAV
-  const section = getTwQueryParamOrDefault({
-    navParam: Astro.url.searchParams.get("section"),
-    repoIndex
-  });
-  if (!section) return res404();
+	// initial NAV
+	const section = getTwQueryParamOrDefault({
+		navParam: Astro.url.searchParams.get("section"),
+		repoIndex,
+	});
+	if (!section) return res404();
 
-  // Initial HTML for no bible schema:
-  const intialHTML = await getTwSchemaHtml({
-    navSection: section,
-    user,
-    repo
-  });
-  if (!intialHTML) return res404();
-  // ADD PROPS FOR TW PAGES
-  repoProps.initialHtml = intialHTML;
-  repoProps.initialPage = section;
-  repoProps.pageTitle = `${user}-${repo}`;
-  repoProps.user = user;
-  repoProps.repo = repo;
+	// Initial HTML for no bible schema:
+	const intialHTML = await getTwSchemaHtml({
+		navSection: section,
+		user,
+		repo,
+	});
+	if (!intialHTML) return res404();
+	// ADD PROPS FOR TW PAGES
+	repoProps.initialHtml = intialHTML;
+	repoProps.initialPage = section;
+	repoProps.pageTitle = `${user}-${repo}`;
+	repoProps.user = user;
+	repoProps.repo = repo;
 }
 //# BIBLE SCHEMA PAGE PROPS
 else if (repoProps.templateType === "BIBLE") {
-  let {book, chapter} = getBookAndChapterFromUrl({
-    book: Astro.url.searchParams.get("book"),
-    chapter: Astro.url.searchParams.get("chapter"),
-    repoIndex
-  });
+	const { book, chapter } = getBookAndChapterFromUrl({
+		book: Astro.url.searchParams.get("book"),
+		chapter: Astro.url.searchParams.get("chapter"),
+		repoIndex,
+	});
 
-  if (!book && !chapter) return res404();
+	if (!book && !chapter) return res404();
 
-  //  intial props/data for page;
-  let initialHtml = null;
-  // post has a complete index
-  if (Astro.request.method !== "POST") {
-    if (!repoIndex.bible?.length) return res404();
-    initialHtml = await getChapterHtml({user, repo, book, chapter});
-    if (!initialHtml) return res404();
-    seedAndMutateInitialDataRepoIndex({
-      repoIndex,
-      book, //slug, not native label;
-      chapter,
-      initialHtml
-    });
-  }
+	//  intial props/data for page;
+	let initialHtml = null;
+	// post has a complete index
+	if (Astro.request.method !== "POST") {
+		if (!repoIndex.bible?.length) return res404();
+		initialHtml = await getChapterHtml({ user, repo, book, chapter });
+		if (!initialHtml) return res404();
+		seedAndMutateInitialDataRepoIndex({
+			repoIndex,
+			book, //slug, not native label;
+			chapter,
+			initialHtml,
+		});
+	}
 
-  repoProps.pageTitle = `${user}-${repo}-${book}-${chapter}`;
-  repoProps.book = book;
-  repoProps.chapter = chapter;
+	repoProps.pageTitle = `${user}-${repo}-${book}-${chapter}`;
+	repoProps.book = book;
+	repoProps.chapter = chapter;
 } else if (repoProps.templateType === "TM") {
-  // initial section of TM
-  const initialPage = getTmQueryParamOrDefault({
-    navParam: Astro.url.searchParams.get("section"),
-    repoIndex
-  });
-  if (!initialPage) return res404();
+	// initial section of TM
+	const initialPage = getTmQueryParamOrDefault({
+		navParam: Astro.url.searchParams.get("section"),
+		repoIndex,
+	});
+	if (!initialPage) return res404();
 
-  // Initial HTML for no bible schema:
-  const intialHTML = await getTmSchemaHtml({
-    navSection: initialPage,
-    user,
-    repo
-  });
-  if (!intialHTML) return res404();
+	// Initial HTML for no bible schema:
+	const intialHTML = await getTmSchemaHtml({
+		navSection: initialPage,
+		user,
+		repo,
+	});
+	if (!intialHTML) return res404();
 
-  // ADD PROPS FOR TW PAGES
-  repoProps.pageTitle = `${user}-${repo}-${initialPage}`;
-  repoProps.initialPage = initialPage;
-  repoProps.initialHtml = intialHTML;
+	// ADD PROPS FOR TW PAGES
+	repoProps.pageTitle = `${user}-${repo}-${initialPage}`;
+	repoProps.initialPage = initialPage;
+	repoProps.initialHtml = intialHTML;
 }
 
 // Set props common to all pages:
 const preferredLocale = getPreferredLangFromHeader(Astro.request);
 const initialDictModule = await import(
-  `../../translations/${preferredLocale}.js`
+	`../../translations/${preferredLocale}.js`
 );
 
 const initialDict = initialDictModule.default as Record<string, string>;
 
 const customFont =
-  repoIndex.appMeta?.fontUrl && typeof repoIndex.appMeta?.fontUrl == "string"
-    ? repoIndex.appMeta?.fontUrl
-    : null;
+	repoIndex.appMeta?.fontUrl && typeof repoIndex.appMeta?.fontUrl === "string"
+		? repoIndex.appMeta?.fontUrl
+		: null;
 const customFontFamily =
-  repoIndex.appMeta?.fontFamily &&
-  typeof repoIndex.appMeta?.fontFamily == "string"
-    ? repoIndex.appMeta?.fontFamily
-    : null;
+	repoIndex.appMeta?.fontFamily &&
+	typeof repoIndex.appMeta?.fontFamily === "string"
+		? repoIndex.appMeta?.fontFamily
+		: null;
 
 if (!repoIndex.repoUrl) {
-  repoIndex.repoUrl = `${import.meta.env.PUBLIC_WACS_URL}/${user}/${repo}`;
+	repoIndex.repoUrl = `${import.meta.env.PUBLIC_WACS_URL}/${user}/${repo}`;
 }
 ---
 

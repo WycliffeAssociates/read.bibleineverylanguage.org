@@ -1,13 +1,13 @@
 {
-  "eslint.validate": [
-    "javascript",
-    "javascriptreact",
-    "astro", // Enable .astro
-    "typescript", // Enable .ts
-    "typescriptreact" // Enable .tsx
-  ]
-  // this can be turned on while working if desired, but should probably be off for version control commits since its a preference.
-  // "editor.codeActionsOnSave": {
-  // "source.fixAll": true
-  // }
+	"eslint.validate": [
+		"javascript",
+		"javascriptreact",
+		"astro", // Enable .astro
+		"typescript", // Enable .ts
+		"typescriptreact" // Enable .tsx
+	]
+	// this can be turned on while working if desired, but should probably be off for version control commits since its a preference.
+	// "editor.codeActionsOnSave": {
+	// "source.fixAll": true
+	// }
 }

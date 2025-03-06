@@ -16,23 +16,14 @@ jobs:
           else
             echo "PUBLIC_WACS_URL=https://wacs-dev.bibletranslationtools.org" >> $GITHUB_ENV
           fi
-      # Run your project's build step
-      # - name: Build
-      #   run: npm install && npm run build
       - name: get pnpm
-        uses: pnpm/action-setup@v2
+        uses: pnpm/action-setup@v4
         with:
-          version: 7.23.0
+          version: 9.13.2
       - name: setup node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version: "18"
-          cache: pnpm
-      - name: Upgrade JS dependencies
-        # ADD YOUR CUSTOM DEPENDENCY UPGRADE COMMANDS BELOW
-        uses: actions/setup-node@v3
-        with:
-          node-version: "18"
+          node-version: "23"
           cache: pnpm
       - name: Install JS dependencies and build
         # ADD YOUR CUSTOM DEPENDENCY UPGRADE COMMANDS BELOW
@@ -41,10 +32,8 @@ jobs:
         env:
           PUBLIC_WACS_URL: ${{ env.PUBLIC_WACS_URL }}
       - name: Publish
-        uses: cloudflare/pages-action@1
+        uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          projectName: read-bibleineverylanguage-org
-          directory: dist # e.g. 'dist'
-          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+          command: pages deploy dist --project-name=read-bibleineverylanguage-org --upload-source-maps=true

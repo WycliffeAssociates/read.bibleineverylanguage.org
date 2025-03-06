@@ -1,133 +1,130 @@
 /* CSS Vars (colors also in tailwind config ) */
 /* Being used cause a lot of html is not in components, so have to write a bit of css in this traditional manner */
 :root {
-  --color-accent: #015ad9;
-  --color-secondary: #faa83c;
-  --color-darkAccent: #001533;
-  --scrollbarBG: rgb(242, 242, 242);
-  --thumbBG: var(--color-accent);
-  --screenHeight: 100vh;
-  --marginIncrement: 0.25rem;
-  --clrBackground: #f2f3f5;
-  --color-text: #33445c;
+	--color-accent: #015ad9;
+	--color-secondary: #faa83c;
+	--color-darkAccent: #001533;
+	--scrollbarBG: rgb(242, 242, 242);
+	--thumbBG: var(--color-accent);
+	--screenHeight: 100vh;
+	--marginIncrement: 0.25rem;
+	--clrBackground: #f2f3f5;
+	--color-text: #33445c;
 }
 .usingCustomFont .font-sans {
-  font-family: inherit;
+	font-family: inherit;
 }
 html #commonWrapper * {
-  @apply print:!h-max print:!overflow-visible;
+	@apply print:!h-max print:!overflow-visible;
 }
 
 /* Fluid font size variables, for browsers that support clamp */
 /* link */ /* https://www.fluid-type-scale.com/calculate?minFontSize=18&minWidth=300&minRatio=1.067&maxFontSize=18&maxWidth=1200&maxRatio=1.2&steps=sm%2Cbase%2Cmd%2Clg%2Cxl%2Cxxl%2Cxxxl&baseStep=base&prefix=font-size&decimals=2&includeFallbacks=on&useRems=on&remValue=16&previewFont=Inter */
 /* Fluid font size variables, for browsers that support clamp */
 @supports (font-size: clamp(1rem, 1vw, 1rem)) {
-  :root {
-    --font-size-sm: clamp(1.17rem, 0.14vw + 1.15rem, 1.25rem);
-    --font-size-base: clamp(1.25rem, 0.44vw + 1.17rem, 1.5rem);
-    --font-size-md: clamp(1.33rem, 0.83vw + 1.18rem, 1.8rem);
-    --font-size-lg: clamp(1.42rem, 1.31vw + 1.18rem, 2.16rem);
-    --font-size-xl: clamp(1.52rem, 1.91vw + 1.16rem, 2.59rem);
-    --font-size-xxl: clamp(1.62rem, 2.65vw + 1.12rem, 3.11rem);
-    --font-size-xxxl: clamp(1.73rem, 3.56vw + 1.06rem, 3.73rem);
-  }
+	:root {
+		--font-size-sm: clamp(1.17rem, 0.14vw + 1.15rem, 1.25rem);
+		--font-size-base: clamp(1.25rem, 0.44vw + 1.17rem, 1.5rem);
+		--font-size-md: clamp(1.33rem, 0.83vw + 1.18rem, 1.8rem);
+		--font-size-lg: clamp(1.42rem, 1.31vw + 1.18rem, 2.16rem);
+		--font-size-xl: clamp(1.52rem, 1.91vw + 1.16rem, 2.59rem);
+		--font-size-xxl: clamp(1.62rem, 2.65vw + 1.12rem, 3.11rem);
+		--font-size-xxxl: clamp(1.73rem, 3.56vw + 1.06rem, 3.73rem);
+	}
 }
 /* Fallback variables for browsers that don't support clamp */
 @supports not (font-size: clamp(1rem, 1vw, 1rem)) {
-  :root {
-    --font-size-sm: 1.17rem;
-    --font-size-base: 1.25rem;
-    --font-size-md: 1.33rem;
-    --font-size-lg: 1.42rem;
-    --font-size-xl: 1.52rem;
-    --font-size-xxl: 1.62rem;
-    --font-size-xxxl: 1.73rem;
-  }
-  @media screen and (min-width: 1200px) {
-    :root {
-      --font-size-sm: 1.25rem;
-      --font-size-base: 1.5rem;
-      --font-size-md: 1.8rem;
-      --font-size-lg: 2.16rem;
-      --font-size-xl: 2.59rem;
-      --font-size-xxl: 3.11rem;
-      --font-size-xxxl: 3.73rem;
-    }
-  }
+	:root {
+		--font-size-sm: 1.17rem;
+		--font-size-base: 1.25rem;
+		--font-size-md: 1.33rem;
+		--font-size-lg: 1.42rem;
+		--font-size-xl: 1.52rem;
+		--font-size-xxl: 1.62rem;
+		--font-size-xxxl: 1.73rem;
+	}
+	@media screen and (min-width: 1200px) {
+		:root {
+			--font-size-sm: 1.25rem;
+			--font-size-base: 1.5rem;
+			--font-size-md: 1.8rem;
+			--font-size-lg: 2.16rem;
+			--font-size-xl: 2.59rem;
+			--font-size-xxl: 3.11rem;
+			--font-size-xxxl: 3.73rem;
+		}
+	}
 }
 
 /* @===============  FONT FACE   =============   */
 @font-face {
-  font-family: "Atkinson Hyperlegible";
-  font-style: normal;
-  font-weight: 400;
-  src:
-    local(""),
-    url("/fonts/atkinson/atkinson-hyperlegible-v10-latin-ext_latin-regular.woff2")
-      format("woff2"),
-    url("/fonts/atkinson/atkinson-hyperlegible-v10-latin-ext_latin-regular.woff")
-      format("woff");
+	font-family: "Atkinson Hyperlegible";
+	font-style: normal;
+	font-weight: 400;
+	src: local(""),
+		url("/fonts/atkinson/atkinson-hyperlegible-v10-latin-ext_latin-regular.woff2")
+		format("woff2"),
+		url("/fonts/atkinson/atkinson-hyperlegible-v10-latin-ext_latin-regular.woff")
+		format("woff");
 }
 /* atkinson-hyperlegible-italic - latin-ext_latin */
 @font-face {
-  font-family: "Atkinson Hyperlegible";
-  font-style: italic;
-  font-weight: 400;
-  src:
-    local(""),
-    url("/fonts/atkinson/atkinson-hyperlegible-v10-latin-ext_latin-italic.woff2")
-      format("woff2"),
-    url("/fonts/atkinson/atkinson-hyperlegible-v10-latin-ext_latin-italic.woff")
-      format("woff");
+	font-family: "Atkinson Hyperlegible";
+	font-style: italic;
+	font-weight: 400;
+	src: local(""),
+		url("/fonts/atkinson/atkinson-hyperlegible-v10-latin-ext_latin-italic.woff2")
+		format("woff2"),
+		url("/fonts/atkinson/atkinson-hyperlegible-v10-latin-ext_latin-italic.woff")
+		format("woff");
 }
 
 @font-face {
-  font-family: "Atkinson Hyperlegible";
-  font-style: normal;
-  font-weight: 700;
-  src:
-    local(""),
-    url("/fonts/atkinson/atkinson-hyperlegible-v10-latin-ext_latin-700.woff2")
-      format("woff2"),
-    url("/fonts/atkinson/atkinson-hyperlegible-v10-latin-ext_latin-700.woff")
-      format("woff");
+	font-family: "Atkinson Hyperlegible";
+	font-style: normal;
+	font-weight: 700;
+	src: local(""),
+		url("/fonts/atkinson/atkinson-hyperlegible-v10-latin-ext_latin-700.woff2")
+		format("woff2"),
+		url("/fonts/atkinson/atkinson-hyperlegible-v10-latin-ext_latin-700.woff")
+		format("woff");
 }
 
 /* #===============  FONT FACE   =============   */
 
 /* @ =============== addl utils   ============= */
 .sentenceCase {
-  text-transform: lowercase;
+	text-transform: lowercase;
 }
 .sentenceCase::first-letter {
-  text-transform: capitalize;
+	text-transform: capitalize;
 }
 .menuNumberInput::-webkit-outer-spin-button,
 .menuNumberInput::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+	-webkit-appearance: none;
+	margin: 0;
 }
 body.noscroll {
-  overflow: hidden;
+	overflow: hidden;
 }
 #pageWrapper {
-  height: var(--screenHeight);
-  display: grid;
-  grid-template-rows: max-content;
-  /* grid-template-rows: (100px, calc(var(--screenHeight) - 100px)); */
-  @apply print:h-auto print:overflow-visible;
+	height: var(--screenHeight);
+	display: grid;
+	grid-template-rows: max-content;
+	/* grid-template-rows: (100px, calc(var(--screenHeight) - 100px)); */
+	@apply print:h-auto print:overflow-visible;
 }
 
 #commonWrapper,
 #readerWrapper {
-  display: flex;
-  flex-flow: column;
-  flex: 1 1 auto;
-  overflow-y: auto;
-  @apply print:h-auto print:overflow-visible;
+	display: flex;
+	flex-flow: column;
+	flex: 1 1 auto;
+	overflow-y: auto;
+	@apply print:h-auto print:overflow-visible;
 }
 #readerWrapper {
-  justify-content: flex-start;
+	justify-content: flex-start;
 }
 
 /*# =============== !addl utils   ============= */
@@ -136,48 +133,48 @@ body.noscroll {
 /* Note, mostly copied from old reader for poetry, some margin stuff */
 
 .theText h1 {
-  font-size: var(--font-size-xxl);
+	font-size: var(--font-size-xxl);
 }
 .theText h2 {
-  font-size: var(--font-size-md);
+	font-size: var(--font-size-md);
 }
 .theText h3 {
-  font-size: var(--font-size-md);
+	font-size: var(--font-size-md);
 }
 .theText h4 {
-  font-size: var(--font-size-base);
+	font-size: var(--font-size-base);
 }
 .theText :is(h1, h2, h3, h4, h5, h6, .chapterMarker) {
-  color: var(--color-darkAccent);
+	color: var(--color-darkAccent);
 }
 .theText .versemarker {
-  color: #5d7596;
+	color: #5d7596;
 }
 .theText .theText p {
-  color: var(--color-text);
+	color: var(--color-text);
 }
 
 .theText p,
 .theText li {
-  font-size: var(--font-size-base);
+	font-size: var(--font-size-base);
 }
 .theText li p {
-  display: inline;
+	display: inline;
 }
 .theText ol {
-  list-style-type: decimal !important;
-  list-style-position: inside;
+	list-style-type: decimal !important;
+	list-style-position: inside;
 }
 .theText ol li {
-  margin-inline-start: var(--marginIncrement);
+	margin-inline-start: var(--marginIncrement);
 }
 .theText ol li ul,
 .theText ol li ol {
-  margin-inline-start: calc(var(--marginIncrement) * 4);
+	margin-inline-start: calc(var(--marginIncrement) * 4);
 }
 .theText ol li ul li,
 .theText ol li ol li {
-  margin-inline-start: calc(var(--marginIncrement) * 6);
+	margin-inline-start: calc(var(--marginIncrement) * 6);
 }
 
 .theText h1,
@@ -185,55 +182,55 @@ body.noscroll {
 .theText h3,
 .theText h4,
 .theText h5 {
-  margin-top: 0.5rem;
-  font-weight: 700;
+	margin-top: 0.5rem;
+	font-weight: 700;
 }
 .theText h1 + h2 {
-  margin: 0;
+	margin: 0;
 }
 .theText h1:has(+ h2) {
-  margin-top: 0.5em;
-  margin-bottom: 0;
+	margin-top: 0.5em;
+	margin-bottom: 0;
 }
 .theText a {
-  color: var(--color-accent);
-  text-decoration: underline;
+	color: var(--color-accent);
+	text-decoration: underline;
 }
 .theText sup {
-  top: -0.75em;
-  margin-inline-end: -4px;
-  margin-inline-start: 4px;
+	top: -0.75em;
+	margin-inline-end: -4px;
+	margin-inline-start: 4px;
 }
 .tm-wrapper .theText ul,
 .tw-theText ul {
-  list-style-type: disc;
-  list-style-position: inside;
+	list-style-type: disc;
+	list-style-position: inside;
 }
 .tm-wrapper .theText ol,
 .tw-theText ol {
-  list-style-type: decimal;
-  list-style-position: outside;
+	list-style-type: decimal;
+	list-style-position: outside;
 }
 .tm-wrapper .theText ol li {
-  margin-left: 1em;
+	margin-left: 1em;
 }
 .tm-wrapper .theText li + li,
 .tm-wrapper .theText p + p {
-  margin-top: 0.5em;
+	margin-top: 0.5em;
 }
 
 .tm-wrapper .navSection .navSection {
-  margin-left: 1rem;
+	margin-left: 1rem;
 }
 .tm-wrapper .navSection .navSection .navSection {
-  margin-left: 1.5rem;
+	margin-left: 1.5rem;
 }
 .tm-wrapper .navSection .navSection .navSection .navSection {
-  margin-left: 2rem;
+	margin-left: 2rem;
 }
 .accordion-transition {
-  transition: height 300ms cubic-bezier(0.65, 0, 0.35, 1);
-  overflow: hidden;
+	transition: height 300ms cubic-bezier(0.65, 0, 0.35, 1);
+	overflow: hidden;
 }
 
 /* .theText ul {
@@ -252,232 +249,232 @@ body.noscroll {
 } */
 
 .acrostic-heading {
-  display: block;
-  font-size: 1.2em;
-  font-weight: bold;
-  margin-top: 2em;
-  margin-bottom: 1em;
+	display: block;
+	font-size: 1.2em;
+	font-weight: bold;
+	margin-top: 2em;
+	margin-bottom: 1em;
 }
 
 /* Major Title */
 .majortitle-1 {
-  display: none;
-  font-size: inherit;
+	display: none;
+	font-size: inherit;
 }
 
 .majortitle-2 {
-  display: none;
-  font-size: inherit;
+	display: none;
+	font-size: inherit;
 }
 
 .majortitle-3 {
-  display: none;
-  font-size: inherit;
+	display: none;
+	font-size: inherit;
 }
 
 /* Footnotes */
 .footnotecaller {
-  font-size: 0.5em;
-  vertical-align: top;
+	font-size: 0.5em;
+	vertical-align: top;
 }
 a[href*="footnote-target"] {
-  color: var(--color-accent);
-  padding: 0.5rem; /* these have a hover popup on them.  It makes the popup hover target a little bigger */
-  margin: -0.5rem;
+	color: var(--color-accent);
+	padding: 0.5rem; /* these have a hover popup on them.  It makes the popup hover target a little bigger */
+	margin: -0.5rem;
 }
 .footnotes {
-  font-size: 0.75em;
+	font-size: 0.75em;
 }
 
 .footnote-header {
-  font-size: 1.2em;
+	font-size: 1.2em;
 }
 
 .footnote-alternate-translation {
-  font-style: italic;
+	font-style: italic;
 }
 
 /* Chapter */
 .chapter {
-  margin-top: 1em;
-  margin-bottom: 1em;
-  font-size: inherit;
-  position: relative;
+	margin-top: 1em;
+	margin-bottom: 1em;
+	font-size: inherit;
+	position: relative;
 }
 
 .chaptermarker {
-  font-size: 1.5em;
-  font-weight: bold;
-  display: block;
-  float: left;
-  margin-inline-end: 0.25em;
+	font-size: 1.5em;
+	font-weight: bold;
+	display: block;
+	float: left;
+	margin-inline-end: 0.25em;
 }
 
 /* Poetry */
 .poetry-1 {
-  font-size: inherit;
-  line-break: normal;
-  display: block;
-  margin-inline-start: 1.5em;
-  line-height: 1.3;
+	font-size: inherit;
+	line-break: normal;
+	display: block;
+	margin-inline-start: 1.5em;
+	line-height: 1.3;
 }
 
 .poetry-2 {
-  font-size: inherit;
-  line-break: normal;
-  display: block;
-  margin-inline-start: 3em;
-  line-height: 1.3;
+	font-size: inherit;
+	line-break: normal;
+	display: block;
+	margin-inline-start: 3em;
+	line-height: 1.3;
 }
 
 .poetry-3 {
-  font-size: inherit;
-  line-break: normal;
-  display: block;
-  margin-inline-start: 4.5em;
-  line-height: 1.3;
+	font-size: inherit;
+	line-break: normal;
+	display: block;
+	margin-inline-start: 4.5em;
+	line-height: 1.3;
 }
 
 .poetry-outdent-1 {
-  margin-inline-start: -1.5em;
+	margin-inline-start: -1.5em;
 }
 
 .poetry-outdent-2 {
-  margin-inline-start: -3em;
+	margin-inline-start: -3em;
 }
 
 .selah-text {
-  font-style: italic;
-  text-align: end;
+	font-style: italic;
+	text-align: end;
 }
 
 /* Verse */
 .verse {
-  font-size: var(--font-size-base);
-  font-weight: normal;
+	font-size: var(--font-size-base);
+	font-weight: normal;
 }
 
 .versemarker {
-  font-size: 0.6em;
+	font-size: 0.6em;
 }
 
 [class^="poetry-"] .versemarker {
-  position: absolute;
-  left: 0;
-  top: unset;
-  margin-top: 0.5em;
+	position: absolute;
+	left: 0;
+	top: unset;
+	margin-top: 0.5em;
 }
 
 .closing {
-  text-align: end;
+	text-align: end;
 }
 
 .reference {
-  font-style: italic;
+	font-style: italic;
 }
 
 /* Section */
 .sectionhead-1 {
-  margin-top: 2em;
-  font-size: 1.2em;
-  font-weight: bold;
-  display: block;
-  text-align: center;
-  text-transform: uppercase;
+	margin-top: 2em;
+	font-size: 1.2em;
+	font-weight: bold;
+	display: block;
+	text-align: center;
+	text-transform: uppercase;
 }
 
 .sectionhead-2 {
-  margin-top: 1em;
-  font-size: 1.1em;
-  font-weight: bold;
-  display: block;
+	margin-top: 1em;
+	font-size: 1.1em;
+	font-weight: bold;
+	display: block;
 }
 
 .sectionhead-3 {
-  margin-top: 1em;
-  font-size: 1.05em;
-  font-weight: bold;
-  display: block;
+	margin-top: 1em;
+	font-size: 1.05em;
+	font-weight: bold;
+	display: block;
 }
 
 /* List */
 .list-1 {
-  line-break: normal;
-  display: block;
-  text-indent: 0px !important;
+	line-break: normal;
+	display: block;
+	text-indent: 0px !important;
 }
 
 .list-2 {
-  line-break: normal;
-  display: block;
-  text-indent: 30px !important;
+	line-break: normal;
+	display: block;
+	text-indent: 30px !important;
 }
 
 .list-3 {
-  line-break: normal;
-  display: block;
-  text-indent: 50px !important;
+	line-break: normal;
+	display: block;
+	text-indent: 50px !important;
 }
 
 /* Special Strings */
 .quoted-book {
-  font-style: italic;
+	font-style: italic;
 }
 
 .additions {
-  font-style: italic;
+	font-style: italic;
 }
 
 .transliterated {
-  font-style: italic;
+	font-style: italic;
 }
 
 .small-caps {
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  font-size: 0.75em;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	font-size: 0.75em;
 }
 
 .center-paragraph {
-  text-align: center;
+	text-align: center;
 }
 
 .descriptive-text {
-  font-style: italic;
-  font-size: 85%;
-  margin-bottom: 1em;
+	font-style: italic;
+	font-size: 85%;
+	margin-bottom: 1em;
 }
 
 .cross-ref-quote {
-  font-style: italic;
+	font-style: italic;
 }
 
 .cross-ref {
-  font-weight: bold;
+	font-weight: bold;
 }
 
 .cross-header {
-  font-size: 1.2rem;
+	font-size: 1.2rem;
 }
 
 .toc2-ref {
-  display: inline;
-  visibility: hidden;
+	display: inline;
+	visibility: hidden;
 }
 
 @media print {
-  .chapterlabel {
-    font-size: 20px;
-    font-weight: 700;
-    text-decoration: underline;
-  }
+	.chapterlabel {
+		font-size: 20px;
+		font-weight: 700;
+		text-decoration: underline;
+	}
 }
 html[dir="rtl"] .chaptermarker {
-  float: right;
+	float: right;
 }
 html[dir="rtl"] [class^="poetry-"] .versemarker {
-  right: 0;
-  left: unset;
+	right: 0;
+	left: unset;
 }
 
 /* @keyframes fadeIn {

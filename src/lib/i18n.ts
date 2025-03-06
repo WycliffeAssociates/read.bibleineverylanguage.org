@@ -1,8 +1,8 @@
 import { langMeta } from "../translations/index";
 export interface i18nDictType {
-  readonly [index: string]: {
-    readonly [index: string]: string;
-  };
+	readonly [index: string]: {
+		readonly [index: string]: string;
+	};
 }
 
 const i18nDictMeta = langMeta;

@@ -1,28 +1,28 @@
 {
-  "extends": "astro/tsconfigs/strict",
+	"extends": "astro/tsconfigs/strict",
 
-  "compilerOptions": {
-    "jsx": "preserve",
-    "allowJs": true,
-    "jsxImportSource": "solid-js",
-    "baseUrl": ".",
-    "moduleResolution": "node",
-    "target": "ESNext",
-    "module": "ESNext",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "noErrorTruncation": true,
-    "types": ["astro/client", "@cloudflare/workers-types"],
-    "paths": {
-      "@components/*": ["src/components/*"],
-      "@layouts/*": ["src/layouts/*"],
-      "@assets/*": ["src/assets/*"],
-      "@images/*": ["src/assets/images/*"],
-      "@lib/*": ["src/lib/*"],
-      "@customTypes/*": ["src/customTypes/*"],
-      "@src/*": ["src/*"]
-    }
-  },
-  "include": ["./**/*", "node_modules/vite-plugin-pwa/client.d.ts", "src/**/*"],
-  "exclude": ["functions/[[path]].js", "./dist/**/*",]
+	"compilerOptions": {
+		"jsx": "preserve",
+		"allowJs": true,
+		"jsxImportSource": "solid-js",
+		"baseUrl": ".",
+		"target": "ESNext",
+		"module": "ESNext",
+		"resolveJsonModule": true,
+		"isolatedModules": true,
+		"noErrorTruncation": true,
+		"lib": ["WebWorker"],
+		"types": ["astro/client", "@cloudflare/workers-types"],
+		"paths": {
+			"@components/*": ["src/components/*"],
+			"@layouts/*": ["src/layouts/*"],
+			"@assets/*": ["src/assets/*"],
+			"@images/*": ["src/assets/images/*"],
+			"@lib/*": ["src/lib/*"],
+			"@customTypes/*": ["src/customTypes/*"],
+			"@src/*": ["src/*"]
+		}
+	},
+	"include": ["./**/*", "node_modules/vite-plugin-pwa/client.d.ts", "src/**/*"],
+	"exclude": ["functions/[[path]].js", "./dist/**/*"]
 }

@@ -11,104 +11,104 @@ const env = process.env as Record<string, string>;
  * See https://playwright.dev/docs/test-configuration.
  */
 const config: PlaywrightTestConfig = {
-  testDir: "./tests",
-  testIgnore: ["unit/**", "component/**"] /* covered by vitest for utils */,
-  /* Maximum time one test can run for. */
-  timeout: 30 * 1000,
-  expect: {
-    /**
-     * Maximum time expect() should wait for the condition to be met.
-     * For example in `await expect(locator).toHaveText();`
-     */
-    timeout: 5000
-  },
-  /* Run tests in files in parallel */
-  fullyParallel: true,
-  /* Fail the build on CI if you accidentally left test.only in the source code. */
-  forbidOnly: !!env.CI,
-  /* Retry on CI only */
-  retries: env.CI ? 2 : 0,
-  /* Opt out of parallel tests on CI. */
-  workers: env.CI ? 1 : undefined,
-  /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-  reporter: "html",
-  /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
-  use: {
-    /* Maximum time each action such as `click()` can take. Defaults to 0 (no limit). */
-    actionTimeout: 0,
-    /* Base URL to use in actions like `await page.goto('/')`. */
-    baseURL: "http://localhost:8788",
+	testDir: "./tests",
+	testIgnore: ["unit/**", "component/**"] /* covered by vitest for utils */,
+	/* Maximum time one test can run for. */
+	timeout: 30 * 1000,
+	expect: {
+		/**
+		 * Maximum time expect() should wait for the condition to be met.
+		 * For example in `await expect(locator).toHaveText();`
+		 */
+		timeout: 5000,
+	},
+	/* Run tests in files in parallel */
+	fullyParallel: true,
+	/* Fail the build on CI if you accidentally left test.only in the source code. */
+	forbidOnly: !!env.CI,
+	/* Retry on CI only */
+	retries: env.CI ? 2 : 0,
+	/* Opt out of parallel tests on CI. */
+	workers: env.CI ? 1 : undefined,
+	/* Reporter to use. See https://playwright.dev/docs/test-reporters */
+	reporter: "html",
+	/* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
+	use: {
+		/* Maximum time each action such as `click()` can take. Defaults to 0 (no limit). */
+		actionTimeout: 0,
+		/* Base URL to use in actions like `await page.goto('/')`. */
+		baseURL: "http://localhost:8788",
 
-    /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
-    trace: "on-first-retry",
-    launchOptions: {
-      // in milliseconds.. change if you want to watch in a browser playwright with a bit of buffering to see what it's doing. You can also just step debug it though.
-      slowMo: 0
-    }
-  },
+		/* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
+		trace: "on-first-retry",
+		launchOptions: {
+			// in milliseconds.. change if you want to watch in a browser playwright with a bit of buffering to see what it's doing. You can also just step debug it though.
+			slowMo: 0,
+		},
+	},
 
-  /* Configure projects for major browsers */
-  projects: [
-    {
-      name: "chromium",
-      use: {
-        ...devices["Desktop Chrome"]
-      }
-    },
+	/* Configure projects for major browsers */
+	projects: [
+		{
+			name: "chromium",
+			use: {
+				...devices["Desktop Chrome"],
+			},
+		},
 
-    {
-      name: "firefox",
-      use: {
-        ...devices["Desktop Firefox"]
-      }
-    },
+		{
+			name: "firefox",
+			use: {
+				...devices["Desktop Firefox"],
+			},
+		},
 
-    {
-      name: "webkit",
-      use: {
-        ...devices["Desktop Safari"]
-      }
-    }
+		{
+			name: "webkit",
+			use: {
+				...devices["Desktop Safari"],
+			},
+		},
 
-    /* Test against mobile viewports. */
-    // {
-    //   name: 'Mobile Chrome',
-    //   use: {
-    //     ...devices['Pixel 5'],
-    //   },
-    // },
-    // {
-    //   name: 'Mobile Safari',
-    //   use: {
-    //     ...devices['iPhone 12'],
-    //   },
-    // },
+		/* Test against mobile viewports. */
+		// {
+		//   name: 'Mobile Chrome',
+		//   use: {
+		//     ...devices['Pixel 5'],
+		//   },
+		// },
+		// {
+		//   name: 'Mobile Safari',
+		//   use: {
+		//     ...devices['iPhone 12'],
+		//   },
+		// },
 
-    /* Test against branded browsers. */
-    // {
-    //   name: 'Microsoft Edge',
-    //   use: {
-    //     channel: 'msedge',
-    //   },
-    // },
-    // {
-    //   name: 'Google Chrome',
-    //   use: {
-    //     channel: 'chrome',
-    //   },
-    // },
-  ],
+		/* Test against branded browsers. */
+		// {
+		//   name: 'Microsoft Edge',
+		//   use: {
+		//     channel: 'msedge',
+		//   },
+		// },
+		// {
+		//   name: 'Google Chrome',
+		//   use: {
+		//     channel: 'chrome',
+		//   },
+		// },
+	],
 
-  /* Folder for test artifacts such as screenshots, videos, traces, etc. */
-  // outputDir: 'test-results/',
+	/* Folder for test artifacts such as screenshots, videos, traces, etc. */
+	// outputDir: 'test-results/',
 
-  // /* Run your local dev server before starting the tests */
-  webServer: {
-    command: "pnpm run build && pnpm run preview",
-    timeout: 480 * 1000,
-    port: 8788,
-    reuseExistingServer: !env.CI
-  }
+	// /* Run your local dev server before starting the tests */
+	webServer: {
+		command: "pnpm run build && pnpm run preview",
+		timeout: 480 * 1000,
+		port: 8788,
+		reuseExistingServer: !env.CI,
+	},
 };
 
 export default config;

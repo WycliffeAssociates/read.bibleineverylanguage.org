@@ -1,0 +1,40 @@
+{
+	"$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
+	"vcs": { "enabled": true, "clientKind": "git", "useIgnoreFile": true },
+	"files": {
+		"ignoreUnknown": false,
+		"ignore": ["functions/*.js", "dist/**/*", "playwright-report/**/*"]
+	},
+	"formatter": { "enabled": true, "indentStyle": "tab" },
+	"organizeImports": { "enabled": true },
+	"linter": {
+		"enabled": true,
+		"rules": {
+			"recommended": true,
+			"complexity": { "noUselessTypeConstraint": "error", "noForEach": "off" },
+			"style": {
+				"noNamespace": "error",
+				"useAsConstAssertion": "error",
+				"noParameterAssign": "off"
+			},
+			"suspicious": {
+				"noExplicitAny": "warn",
+				"noExtraNonNullAssertion": "warn",
+				"noConfusingVoidType": "off"
+			},
+			"a11y": {
+				"noSvgWithoutTitle": "off"
+			}
+		},
+		"ignore": ["functions/*.js", "dist/**/*", "playwright-report/**/*"]
+	},
+	"javascript": { "formatter": { "quoteStyle": "double" } },
+	"overrides": [
+		{
+			"include": ["*.ts"],
+			"linter": {
+				"rules": { "correctness": { "noUndeclaredVariables": "off" } }
+			}
+		}
+	]
+}
