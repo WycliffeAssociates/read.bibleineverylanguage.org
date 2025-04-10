@@ -95,3 +95,5 @@ export const CACHENAMES = {
 	lrPagesCache: `lr-pages-${htmlCacheVersion}`,
 	static: "lr-pages-static",
 };
+
+export const SERVER_USER_AGENT = "wacs-live-reader";

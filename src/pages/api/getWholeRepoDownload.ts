@@ -1,5 +1,6 @@
 import type { IcfEnv } from "@customTypes/types";
 import { allParamsAreValid, getHeaders } from "@lib/api";
+import { SERVER_USER_AGENT } from "@lib/contants";
 import type { APIRoute } from "astro";
 
 export const GET: APIRoute = async (context) => {
@@ -27,6 +28,10 @@ export const GET: APIRoute = async (context) => {
 		const finalUrl = `${baseUrl}/${user}/${repo}/download.json`;
 		const response = await fetch(finalUrl, {
 			method: method === "GET" ? "GET" : "HEAD",
+			headers: {
+				"Content-Type": "application/json",
+				"User-agent": SERVER_USER_AGENT,
+			},
 		});
 		if (!response.ok || response.status === 404) {
 			return new Response(null, {

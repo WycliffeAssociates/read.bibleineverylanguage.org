@@ -1,5 +1,6 @@
 import type { IcfEnv } from "@customTypes/types";
 import { allParamsAreValid, getHeaders } from "@lib/api";
+import { SERVER_USER_AGENT } from "@lib/contants";
 import type { APIRoute } from "astro";
 
 export const GET: APIRoute = async (context) => {
@@ -21,7 +22,12 @@ export const GET: APIRoute = async (context) => {
 		const baseUrl = env.PIPELINE_API_URL_BASE;
 		const finalUrl = `${baseUrl}/${user}/${repo}/${book}/whole.json`;
 
-		const response = await fetch(finalUrl);
+		const response = await fetch(finalUrl, {
+			headers: {
+				"Content-Type": "application/json",
+				"User-agent": SERVER_USER_AGENT,
+			},
+		});
 
 		if (response.ok) {
 			return new Response(response.body, {

@@ -1,5 +1,6 @@
 import type { IcfEnv } from "@customTypes/types";
 import { aTagHandler, allParamsAreValid, getHeaders } from "@lib/api";
+import { SERVER_USER_AGENT } from "@lib/contants";
 import type { APIRoute } from "astro";
 
 export const GET: APIRoute = async (context) => {
@@ -22,7 +23,12 @@ export const GET: APIRoute = async (context) => {
 		const baseUrl = env.PIPELINE_API_URL_BASE;
 		const finalUrl = `${baseUrl}/${user}/${repo}/${bookKey}/${chapter}.html`;
 		console.log(`fetching ${finalUrl}`);
-		const response = await fetch(finalUrl);
+		const response = await fetch(finalUrl, {
+			headers: {
+				Accept: "text/html",
+				"User-agent": SERVER_USER_AGENT,
+			},
+		});
 		if (!response.ok) {
 			throw new Error(response.statusText);
 		}

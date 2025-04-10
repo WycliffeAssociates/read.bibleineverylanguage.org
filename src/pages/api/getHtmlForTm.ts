@@ -5,6 +5,7 @@ import {
 	getHeaders,
 	getRepoIndexLocal,
 } from "@lib/api";
+import { SERVER_USER_AGENT } from "@lib/contants";
 import type { APIRoute } from "astro";
 
 export const GET: APIRoute = async (context) => {
@@ -30,7 +31,12 @@ export const GET: APIRoute = async (context) => {
 		// http://localhost/u/WA-Catalog/en_ulb/index.json;
 		const baseUrl = env.PIPELINE_API_URL_BASE;
 		const finalUrl = `${baseUrl}/${user}/${repo}/${navSection}.html`;
-		const response = await fetch(finalUrl);
+		const response = await fetch(finalUrl, {
+			headers: {
+				Accept: "text/html",
+				"User-agent": SERVER_USER_AGENT,
+			},
+		});
 		const newResp = new Response(response.body, {
 			headers: getHeaders(),
 		});
