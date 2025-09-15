@@ -300,7 +300,7 @@ const ReaderMenu: Component<MenuProps> = (props) => {
 					class="mx-auto flex w-full flex-wrap items-center bg-[--clrBackground]"
 				>
 					<div class="relative mx-auto flex w-full max-w-[75ch] items-center justify-between gap-3 bg-white p-3 text-varBase sm:px-8 print:hidden">
-						<div class="flex w-full justify-between overflow-hidden rounded-lg bg-white outline outline-1 outline-gray-300 focus-within:outline-2 focus-within:outline-accent">
+						<div class="flex w-full justify-between overflow-hidden rounded-lg bg-white outline-1 outline-gray-300 focus-within:outline-2 focus-within:outline-accent">
 							<button
 								class="flex h-12 w-full flex-grow items-center justify-between rounded-md hover:bg-gray-100 ltr:pl-4 rtl:pr-4"
 								onClick={() => togglePanel()}

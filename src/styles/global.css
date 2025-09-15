@@ -1,3 +1,5 @@
+@import "tailwindcss";
+
 /* CSS Vars (colors also in tailwind config ) */
 /* Being used cause a lot of html is not in components, so have to write a bit of css in this traditional manner */
 :root {
@@ -10,6 +12,20 @@
 	--marginIncrement: 0.25rem;
 	--clrBackground: #f2f3f5;
 	--color-text: #33445c;
+}
+@theme {
+	--color-accent: var(--color-accent);
+	--color-secondary: var(--color-secondary);
+	--color-darkAccent: var(--color-darkAccent);
+	--scrollbarBG: var(--scrollbarBG);
+	--thumbBG: var(--thumbBG);
+	--screenHeight: var(--screenHeight);
+	--marginIncrement: var(--marginIncrement);
+	--clrBackground: var(--clrBackground);
+	--color-text: var(--color-text);
+	--font-sans: 'Atkinson Hyperlegible'; 
+	--text-varBase: var(--font-size-base);
+	--text-varSmall: var(--font-size-sm);
 }
 .usingCustomFont .font-sans {
 	font-family: inherit;
@@ -88,6 +104,13 @@ html #commonWrapper * {
 		format("woff2"),
 		url("/fonts/atkinson/atkinson-hyperlegible-v10-latin-ext_latin-700.woff")
 		format("woff");
+}
+
+::backdrop {
+  background-color: rgba(0, 0, 0, 0.5);
+	position: relative;
+	z-index: 9999; 
+	pointer-events: all;
 }
 
 /* #===============  FONT FACE   =============   */
@@ -477,7 +500,24 @@ html[dir="rtl"] [class^="poetry-"] .versemarker {
 	left: unset;
 }
 
-/* @keyframes fadeIn {
+@keyframes slideLeft {
+	from {
+		transform: translateX(100%);
+	}
+	to {
+		transform: translateX(0%);
+	}
+}
+@keyframes slideRight {
+	from {
+		transform: translateX(0%);
+	}
+	to {
+		transform: translateX(100%);
+	}
+}
+
+@keyframes fadeIn {
   from {
     opacity: 0
   }
@@ -492,4 +532,4 @@ html[dir="rtl"] [class^="poetry-"] .versemarker {
   to {
     opacity: 0;
   }
-} */
+}

@@ -6,7 +6,9 @@
 	"packageManager": "pnpm@9.3.0",
 	"pnpm": {
 		"updateConfig": {
-			"ignoreDependencies": [""]
+			"ignoreDependencies": [
+				""
+			]
 		}
 	},
 	"scripts": {
@@ -25,34 +27,36 @@
 	},
 	"dependencies": {
 		"@astrojs/check": "^0.9.4",
-		"@astrojs/cloudflare": "12.2.3",
-		"@astrojs/solid-js": "5.0.5",
-		"@astrojs/tailwind": "^6.0.0",
-		"@kobalte/core": "^0.13.9",
-		"@solid-primitives/i18n": "^2.2.0",
-		"astro": "^5.4.2",
+		"@astrojs/cloudflare": "12.6.8",
+		"@astrojs/solid-js": "5.1.1",
+		"@kobalte/core": "^0.13.11",
+		"@solid-primitives/i18n": "^2.2.1",
+		"astro": "^5.13.7",
 		"fflate": "^0.8.2",
-		"idb-keyval": "^6.2.1",
-		"logrocket": "^9.0.2",
-		"p-limit": "^6.2.0",
-		"solid-js": "^1.9.5",
-		"tailwindcss": "^3.0.24",
-		"vitest": "^3.0.8"
+		"idb-keyval": "^6.2.2",
+		"logrocket": "^10.1.0",
+		"p-limit": "^7.1.1",
+		"qrcode": "^1.5.4",
+		"solid-js": "^1.9.9",
+		"tailwindcss": "^4.1.13",
+		"vitest": "^3.2.4"
 	},
 	"devDependencies": {
-		"@biomejs/biome": "1.9.4",
-		"@cloudflare/workers-types": "^4.20250303.0",
+		"@biomejs/biome": "2.2.4",
+		"@cloudflare/workers-types": "^4.20250913.0",
 		"@playwright/experimental-ct-solid": "^1.48.2",
-		"@playwright/test": "^1.51.0",
+		"@playwright/test": "^1.55.0",
+		"@tailwindcss/vite": "^4.1.13",
+		"@types/qrcode": "^1.5.5",
 		"@types/workbox-sw": "^4.3.7",
-		"@typescript-eslint/eslint-plugin": "^8.26.0",
-		"@typescript-eslint/parser": "^8.26.0",
-		"@vite-pwa/astro": "^0.5.0",
-		"htmlrewriter": "^0.0.12",
-		"rollup-plugin-visualizer": "^5.14.0",
-		"typescript": "^5.8.2",
-		"vite": "^6.2.0",
-		"vite-plugin-pwa": "^0.21.1",
+		"@typescript-eslint/eslint-plugin": "^8.44.0",
+		"@typescript-eslint/parser": "^8.44.0",
+		"@vite-pwa/astro": "^1.1.0",
+		"htmlrewriter": "^0.0.13",
+		"rollup-plugin-visualizer": "^6.0.3",
+		"typescript": "^5.9.2",
+		"vite": "^7.1.5",
+		"vite-plugin-pwa": "^1.0.3",
 		"vitest": "^1.5.3",
 		"workbox-cacheable-response": "^7.3.0",
 		"workbox-core": "^7.3.0",
@@ -62,6 +66,6 @@
 		"workbox-routing": "^7.3.0",
 		"workbox-strategies": "^7.3.0",
 		"workbox-window": "^7.3.0",
-		"wrangler": "^3.114.0"
+		"wrangler": "^4.37.0"
 	}
 }

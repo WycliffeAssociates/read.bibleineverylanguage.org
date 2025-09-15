@@ -38,7 +38,6 @@ export const GET: APIRoute = async (context) => {
 		});
 		// NOTE: TN AND BIBLE CHAP ARE BOTH CHAPTER/VERSE SCHEMAS, SO THE SAME API FETCHER FUNCTION IS HERE USED, BUT WE REWRITE ANY FOUND TN LINKS AS WELL HERE.
 		const handler = new aTagHandler(user, "TN");
-		console.log("chekcy");
 		// biome-ignore lint/suspicious/noExplicitAny: <explanation>
 		let Rewriter: any =
 			typeof HTMLRewriter === "undefined" ? null : HTMLRewriter;
