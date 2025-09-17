@@ -1,8 +1,7 @@
 // import { defineConfig } from "astro/config";
 import { defineConfig } from "astro/config";
 
-// https://astro.build/config
-import tailwind from "@astrojs/tailwind";
+import tailwindcss from "@tailwindcss/vite";
 
 // https://astro.build/config
 import cloudflare from "@astrojs/cloudflare";
@@ -31,7 +30,7 @@ export default defineConfig({
 		},
 	}),
 	integrations: [
-		tailwind(),
+
 		solidJs(),
 		AstroPWA({
 			/* your pwa options */
@@ -52,7 +51,9 @@ export default defineConfig({
 	],
 	vite: {
 		plugins: [
-			// @ts-ignore
+			// @ts-expect-error
+			tailwindcss(),
+			// @ts-expect-error
 			visualizer({
 				brotliSize: true,
 				template: "treemap",
